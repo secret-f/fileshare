@@ -1,4 +1,4 @@
-from xmlrpc.client import Server
+from xmlrpc.client import Server, Binary
 import sys, cmdapi
 
 help_doc = '''\
@@ -15,7 +15,7 @@ def uploadfile(filename):
     except FileNotFoundError:
         pass
     else:
-        s.uploadfile(f)
+        s.uploadfile(filename, Binary(f.read()))
         f.close()
 
 def getfile(filename):

@@ -4,15 +4,10 @@ from xmlrpc.client import Binary
 def check(fn):
     return '\\' in fn or '/' in fn
 
-def uploadfile(file):
-    content = file.read()
-    try:
-        f = open(file.name, 'xb')
-    except FileExistsError:
-        return 1
-    else:
-        f.write(content)
-        f.close()
+def uploadfile(filename, content):
+    f = open(filename, 'wb')
+    f.write(content.data)
+    f.close()
     return 0
 
 def getfile(filename):
